@@ -1,0 +1,18 @@
+version: '3'
+services:
+  blog_app:
+    image: wordpress:apache
+    ports:
+      - "9992:80"
+    env_file:
+      - "wordpress.env"
+    environment:
+      - 'WORDPRESS_DB_HOST=blog_db'
+  blog_db:
+    image: mariadb:10-bionic
+    environment:
+      - 'MYSQL_DATABASE=blogdb'
+      - 'MYSQL_USER=bloguser'
+      - 'MYSQL_PASSWORD=blogpass'
+      - 'MYSQL_ROOT_PASSWORD=abc123'
+  
