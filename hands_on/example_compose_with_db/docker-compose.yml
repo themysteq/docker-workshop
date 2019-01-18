@@ -1,0 +1,19 @@
+version: '3'
+services:
+  myapp:
+    build: ./app_service
+    ports:
+      - "9991:5000"
+    environment:
+      - "DB_CONNECTION_STRING=postgresql://flaskuser:flaskpass@mydb/flaskdb"
+  mydb:
+#    build: ./db
+    image: postgres:9.6-alpine
+    environment:
+      - "POSTGRES_USER=flaskuser"
+      - "POSTGRES_DB=flaskdb"
+      - "POSTGRES_PASSWORD=flaskpass"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+volumes:
+  dbdata:
