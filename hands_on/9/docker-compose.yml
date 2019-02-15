@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    build: ./webapp
+    environment:
+      - "REDIS_PORT=6379"
+      - "REDIS_HOST=db"
+    ports:
+      - 9090:5000
+  db:
+    image: redis:5.0.3
